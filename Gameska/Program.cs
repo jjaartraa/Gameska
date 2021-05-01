@@ -7,12 +7,23 @@ namespace Gameska
     {
         static void Main(string[] args)
         {
+            ConsoleKey lastkey = new ConsoleKey();
+
             Console.WriteLine("Press Any Key To Start");
-            Console.ReadKey();
             Config cfg = new Config();
+            cfg.LoadConfig();
+            Display display = new Display(cfg.map, cfg.ViewResolution, cfg.PPX, cfg.PPY);
 
-            Console.ReadKey();
+            do
+            {
+                lastkey = Console.ReadKey().Key;
+                display.PlayerMove(lastkey.ToString());
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine(display.Refresh());
+                
+            } while (lastkey != ConsoleKey.Escape);
 
+            
         }
     }
 }

@@ -9,7 +9,7 @@
 				</MapTile>
 				<MapTile description="Ground">
 					<CSV>0</CSV>
-					<CHAR> </CHAR>
+					<CHAR></CHAR>
 				</MapTile>
 				<MapTile description="Portal?">
 					<CSV>5</CSV>
@@ -25,7 +25,6 @@
 				</MapTile>
 			</MapTiles>
 		</Map>
-
 		<Display>
 			<Resolution>20</Resolution>
 		</Display>
