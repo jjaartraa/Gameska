@@ -25,4 +25,8 @@
 				</MapTile>
 			</MapTiles>
 		</Map>
+
+		<Display>
+			<Resolution>20</Resolution>
+		</Display>
 	</Config>

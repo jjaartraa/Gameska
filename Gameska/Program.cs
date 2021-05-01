@@ -10,6 +10,9 @@ namespace Gameska
             Console.WriteLine("Press Any Key To Start");
             Console.ReadKey();
             Config cfg = new Config();
+
+            Console.ReadKey();
+
         }
     }
 }
