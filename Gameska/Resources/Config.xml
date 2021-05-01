@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>                     
+	<Config>
+		<Map>
+			<MapDimensions>100</MapDimensions>
+			<MapTiles>
+				<MapTile description="Wall">
+					<CSV>9</CSV>
+					<CHAR>▓</CHAR>
+				</MapTile>
+				<MapTile description="Ground">
+					<CSV>29</CSV>
+					<CHAR> </CHAR>
+				</MapTile>
+				<MapTile description="Portal?">
+					<CSV>30</CSV>
+					<CHAR>■</CHAR>
+				</MapTile>
+				<MapTile description="Water">
+					<CSV>3</CSV>
+					<CHAR>~</CHAR>
+				</MapTile>
+				<MapTile description="Spawn">
+					<CSV>45</CSV>
+					<CHAR>@</CHAR>
+				</MapTile>
+			</MapTiles>
+		</Map>
+	</Config>
