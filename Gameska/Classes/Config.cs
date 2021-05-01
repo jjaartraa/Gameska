@@ -8,7 +8,7 @@ namespace Gameska.Classes
     class Config
     {
         int MapDimensions;              // Defines size of map array [MapDimensions,MapDimensions]
-        string[,] MapTiles;             // Defines Tiles used on map [ID of tile in CSV, CHAR representation of tile] E.g [1,#] - Wall / [4,~] - Water
+        Dictionary<string,char> MapTiles;             // Defines Tiles used on map [ID of tile in CSV, CHAR representation of tile] E.g [1,#] - Wall / [4,~] - Water
 
         public void LoadConfig()
         {
@@ -17,18 +17,14 @@ namespace Gameska.Classes
 
             MapDimensions = int.Parse(doc.DocumentElement.SelectSingleNode("/Config/Map/MapDimensions").InnerText);     //Get map size
 
-            XmlNode TilesParent = doc.DocumentElement.SelectSingleNode("/Config/Map/MapTiles");                         //Get parent node of Tile types for easy manipulation
 
-            MapTiles = new string[TilesParent.ChildNodes.Count, TilesParent.ChildNodes.Count];                          //Set size of TyleType array
-
-            int TypeIteration = 0;                                                                                      
-            foreach (XmlNode n in TilesParent.ChildNodes)
+            int TypeIteration = 0;
+            foreach (XmlNode n in doc.DocumentElement.SelectSingleNode("/Config/Map/MapTiles").ChildNodes)
             {
-                MapTiles[TypeIteration, 0] = n.SelectSingleNode("/CSV").InnerText;
-                MapTiles[TypeIteration, 1] = n.SelectSingleNode("/CHAR").InnerText;
+                MapTiles.Add(n.SelectSingleNode("/CSV").InnerText,char.Parse(n.SelectSingleNode("/CHAR").InnerText));
             }
 
-
+            Map map = new Map(MapTiles, MapDimensions);
         }
     }
 }

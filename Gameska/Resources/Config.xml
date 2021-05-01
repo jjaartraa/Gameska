@@ -8,11 +8,11 @@
 					<CHAR>▓</CHAR>
 				</MapTile>
 				<MapTile description="Ground">
-					<CSV>29</CSV>
+					<CSV>0</CSV>
 					<CHAR> </CHAR>
 				</MapTile>
 				<MapTile description="Portal?">
-					<CSV>30</CSV>
+					<CSV>5</CSV>
 					<CHAR>■</CHAR>
 				</MapTile>
 				<MapTile description="Water">
@@ -20,7 +20,7 @@
 					<CHAR>~</CHAR>
 				</MapTile>
 				<MapTile description="Spawn">
-					<CSV>45</CSV>
+					<CSV>6</CSV>
 					<CHAR>@</CHAR>
 				</MapTile>
 			</MapTiles>
