@@ -23,7 +23,6 @@ namespace Gameska
                 
             } while (lastkey != ConsoleKey.Escape);
 
-            
         }
     }
 }
