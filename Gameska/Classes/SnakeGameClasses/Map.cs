@@ -24,10 +24,22 @@ namespace Gameska.Classes.SnakeGameClasses
                 height = 10;
             }
             Grid = new char[width, height];
+
+            this.Width = width;
+            this.Height = height;
+
             SetBounds();
         }
         private void SetBounds()
         {
+            for (int Y = 0; Y < Height; Y++)
+            {
+                for (int X = 0; X < Width; X++)
+                {
+                    Grid[X, Y] = ' ';
+                }
+            }
+
             for (int Y = 0; Y < Height; Y++)
             {
                 if (Y == 0 || Y == Height - 1)

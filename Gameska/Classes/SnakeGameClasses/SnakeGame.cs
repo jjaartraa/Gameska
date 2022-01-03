@@ -8,11 +8,15 @@ namespace Gameska.Classes
 {
     class SnakeGame
     {
+
+        // wall     ▓
+        // food     ■
+        // snake    @
+
         MapGenerator Map = new MapGenerator();
         List<Coordinates> SnakeBody = new List<Coordinates>();
-        Coordinates Food;
-        Coordinates lastPost = new Coordinates();
-        string Direction = "w";
+        Coordinates Food = new Coordinates();
+        string Direction = "";
 
         public SnakeGame(int GameSpeed, int GridWidht, int GridHeight)
         {
@@ -23,17 +27,17 @@ namespace Gameska.Classes
             Direction = dir;
         }
 
-        private void StartGame(int Width, int Height, int Speed)
+        private void StartGame(int Width, int Height, int Speed = 0)
         {
-            
-            Timer t = new Timer(TimerCallback, null, 0, 2000);
             Map.InicializeMap(Width, Height);
             SnakeBody.Add(new Coordinates(Width / 2, Height / 2));
-
+            SnakeBody.Add(new Coordinates(Width / 2, Height / 2));
+            SpawnFood();
         }
-        private void MoveSnake()
+
+        public string MoveSnake()
         {
-            Coordinates SnakePos = SnakeBody[0];
+            Coordinates SnakePos = SnakeBody[SnakeBody.Count-1];
             switch (Direction)
             {
                 case "W":
@@ -59,10 +63,11 @@ namespace Gameska.Classes
             {
                 case 1:
                     SnakeBody.RemoveAt(0);
-                    SnakeBody.Add(SnakePos);
+                    SnakeBody.Add(new Coordinates(SnakePos.x, SnakePos.y));
                     break;
                 case 2:
-                    SnakeBody.Add(SnakePos);
+                    SnakeBody.Add(new Coordinates(SnakePos.x, SnakePos.y));
+                    SpawnFood();
                     break;
                 case 3:
                     GameOver();
@@ -70,35 +75,64 @@ namespace Gameska.Classes
                 default:
                     break;
             }
+            return DrawScene();
         }
         private void SpawnFood()
         {
-            while (CheckPosition(Food)!=1)
+            do
             {
-                Food = Food.NewRandomCoordinates(Map.Width, Map.Height);
+                Food = Food.NewRandomCoordinates(Map.Width - 1, Map.Height - 1);
+            } while (CheckPosition(Food) != 2);
+        }
+
+        private int CheckPosition(Coordinates pos)
+        {
+            if (Map.Grid[pos.x, pos.y] == '▓')
+            {
+                return 3;
+            }
+            else if (pos.x == Food.x && pos.y == Food.y)
+            {
+                return 2;
+            }
+            else
+            {
+                return 1;
             }
         }
 
-        private void TimerCallback(Object o)
+        private string DrawScene()
         {
-            MoveSnake();
-            GC.Collect();
-        }
-        private int CheckPosition(Coordinates pos)
-        {
-
-
-            return 1;
-        }
-
-        private void DrawScene()
-        { 
-        
+            string map = "";
+            //char[,] TempMap = Map.Grid;
+            MapGenerator TempMap = new MapGenerator()
+            {
+                Grid = (char[,])Map.Grid.Clone(),
+                Width = Map.Width,
+                Height = Map.Height
+               
+            };
+            TempMap.Grid[SnakeBody[0].x, SnakeBody[0].y] = ' ';
+            TempMap.Grid[Food.x, Food.y] = '■';
+            foreach (var part in SnakeBody)
+            {
+                TempMap.Grid[part.x, part.y] = '@';
+            }
+            for (int Y = 0; Y < Map.Width; Y++)
+            {
+                for (int X = 0; X < Map.Height; X++)
+                {
+                    map += TempMap.Grid[X, Y];
+                }
+                map += '\n';
+            }
+            
+            return map;
         }
 
         private void GameOver()
-        { 
-        
+        {
+            StartGame(1, 20, 20);
         }
     }
 }

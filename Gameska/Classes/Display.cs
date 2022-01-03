@@ -6,7 +6,8 @@ namespace Gameska.Classes
 {
     class Display
     {
-        private char[,] View;
+
+        //private char[,] View;
         private char[,] Map;
         private int Resolution;
         private int centerPosX;

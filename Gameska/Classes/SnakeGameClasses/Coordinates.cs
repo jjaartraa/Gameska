@@ -17,15 +17,10 @@ namespace Gameska.Classes.SnakeGameClasses
             this.y = y;
         }
 
-        public Coordinates NewRandomCoordinates(int min, int max)
+        public Coordinates NewRandomCoordinates(int maxWidth, int maxHeight)
         {
             Random rnd = new Random();
-            return new Coordinates(rnd.Next(min,max),rnd.Next(min,max));
-        }
-        public Coordinates NewRandomCoordinates(int minx, int maxx, int miny, int maxy)
-        {
-            Random rnd = new Random();
-            return new Coordinates(rnd.Next(minx, maxx), rnd.Next(miny, maxy));
+            return new Coordinates(rnd.Next(0, maxWidth),rnd.Next(0, maxHeight));
         }
     }
 }

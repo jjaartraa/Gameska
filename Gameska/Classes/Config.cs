@@ -11,10 +11,10 @@ namespace Gameska.Classes
         int MapDimensions;                                                              // Defines size of map array [MapDimensions,MapDimensions]
         Dictionary<string, char> MapTiles = new Dictionary<string, char>();               // Defines Tiles used on map [ID of tile in CSV, CHAR representation of tile] E.g [1,#] - Wall / [4,~] - Water
 
-        public char[,] map;
-        public int PPX;                                 // Player Position X
-        public int PPY;                                 // Player Position Y
-        public int ViewResolution;                   // Dimensions of displayed part of map char[DisplayResolution,DisplayResolution]
+        public char[,] map;         // Map Array
+        public int PPX;             // Player Position X
+        public int PPY;             // Player Position Y
+        public int ViewResolution;  // Dimensions of displayed part of map char[DisplayResolution,DisplayResolution]
 
         public void LoadConfig()
         {
